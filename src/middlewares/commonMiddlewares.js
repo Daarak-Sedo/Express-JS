@@ -1,26 +1,17 @@
+  
+   // to verify that Token(isFreeAppUser) is avalibale or not
+const middleware = function (req, res, next) {
 
-const mid1= function ( req, res, next) {
-    req.falana= "hi there. i am adding something new to the req object"
-    console.log("Hi I am a middleware named Mid1")
-    next()
-}
+    let tokenHeader = req.headers.isfreeappuser;
+console.log(tokenHeader)
 
-const mid2= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid2")
-    next()
-}
+    if(!tokenHeader){
+        res.send("plese enter isFreeAppUser Bollean filed with any value")
+    }
+    else {
+        next()   //afer next() call it will redirect to Router file  form where the algoritm came ghere
+    }
+};
 
-const mid3= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid3")
-    next()
-}
 
-const mid4= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid4")
-    next()
-}
-
-module.exports.mid1= mid1
-module.exports.mid2= mid2
-module.exports.mid3= mid3
-module.exports.mid4= mid4
+module.exports.middleware = middleware;
