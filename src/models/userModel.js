@@ -15,9 +15,7 @@ const userSchema = new mongoose.Schema( {
         enum: ["male", "female", "other"]
     },
     age: Number,
-    isDeleted:{
-        type:Boolean,
-    default:false}
+    posts: {type: [], default: []}
 }, { timestamps: true });
 
-module.exports = mongoose.model('JWT-user', userSchema)
+module.exports = mongoose.model('JWT_UserS', userSchema)

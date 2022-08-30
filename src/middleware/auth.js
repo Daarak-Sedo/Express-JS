@@ -1,27 +1,39 @@
 const jwt = require("jsonwebtoken");
 
-const authenticate  = function(req, req, next) {//tokenCheck or authenticate , we can write anything
-
+const authenticate = function(req, res, next) {
     //check the token in request header
     //validate this token
-        let token = req.headers["x-Auth-token"];
-        if (!token) token = req.headers["x-auth-token"];
-        if (!token) return res.send({ status: false, msg: "token must be present" });
-        else {next()}
-}
+    let token = req.headers["x-Auth-token"];
+  if (!token) token = req.headers["x-auth-token"];
 
+  //If no token is present in the request header return error
+  if (!token) return res.send({ status: false, msg: "token must be present" });
+console.log(token);
 
-const authorise = function(req, res, next) {   //authorisationCheck or authorise, we can write anothing
-
-    // comapre the logged in user's id and the id in request
-    let token= req.headers["x-auth-token"];
-    let decodedToken= jwt.verify(token, "functionup-thorium")
-    let toBeUpdatedUserId= req.params.userId;
-    let loggedInUserId= decodedToken.userId;
-    if(loggedInUserId != toBeUpdatedUserId) return res.send({status:false, msg:"you are not authorized to perform this task"})
+  // If a token is present then decode the token with verify function
+  // verify takes two inputs:
+  // Input 1 is the token to be decoded
+  // Input 2 is the same secret with which the token was generated
+  // Check the value of the decoded token yourself
+  let decodedToken = jwt.verify(token, "functionup-thorium");
+  if (!decodedToken)
+    return res.send({ status: false, msg: "token is invalid" });
+    req.UserLoggedIn= decodedToken.userId
     next()
 }
 
 
-module.exports.authenticate= authenticate
-module.exports.authorise = authorise 
+const authorise = function(req, res, next) {
+    // comapre the logged in user's id and the id in request
+    
+    //userId for which the request is made. In this case message to be posted.
+    let userToBeModified = req.params.userId
+    if(userToBeModified!== req.UserLoggedIn){
+    return res.send({status:false,msg:"permission denied"})
+    }
+    next()
+}
+
+
+module.exports.authenticate=authenticate
+module.exports.authorise=authorise
