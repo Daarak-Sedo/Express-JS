@@ -20,4 +20,4 @@ const userSchema = new mongoose.Schema( {
     default:false}
 }, { timestamps: true });
 
-module.exports = mongoose.model('JWTuser', userSchema)
+module.exports = mongoose.model('JWT-user', userSchema)
