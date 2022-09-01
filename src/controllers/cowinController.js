@@ -38,6 +38,7 @@ let getDistricts = async function (req, res) {
     }
 }
 
+
 let getByPin = async function (req, res) {
     try {
         let pin = req.query.pincode
@@ -56,6 +57,7 @@ let getByPin = async function (req, res) {
         res.status(500).send({ msg: err.message })
     }
 }
+
 
 let getOtp = async function (req, res) {
     try {
