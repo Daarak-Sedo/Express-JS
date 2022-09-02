@@ -23,10 +23,13 @@
 
 
 2.  GOTO  http://api.openweathermap.org => “subscribe” current weather data ==> get api key for Free version ==> create new account and Verify your emailId( Must verify to avoid issues) => go to My APi keys under your account name(top right corner) or https://home.openweathermap.org/api_keys => save the key/appid somewhere. Now proceed further
-Create API's to do each of the following:
-                    - get weather of London from http://api.openweathermap.org/data/2.5/weather?q=London&appid=<useYourOwnAppId>  (NOTE: must use HTTP infront of the url else axios will attempt to hit localhost and give error  ..also use HTTP only and not HTTPS)
+
+ Create API's to do each of the following:
+
+                   (i) -  get weather of London from http://api.openweathermap.org/data/2.5/weather?q=London&appid=<useYourOwnAppId>  (NOTE: must use HTTP infront of the url else axios will attempt to hit localhost and give error  ..also use HTTP only and not HTTPS)
                     - then change the above to get the temperature only( of London)
-                    - Sort the cities  ["Bengaluru","Mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"] in order of their increasing temperature
+
+                   (ii) -  Sort the cities  ["Bengaluru","Mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"] in order of their increasing temperature
                     result should look something like this
                     [
                     {city:"London", temp: 280},
@@ -40,7 +43,8 @@ Create API's to do each of the following:
 
             1. Get all the memes at Postman (https://api.imgflip.com/get_memes)
             2. Pick a memeId you want (Eg 129242436) for the POST request
-            3. Create a Post request (https://api.imgflip.com/caption_image) with only query params. Following are the params (copy username and password exactly as given below):
+            3. Create a Post request (https://api.imgflip.com/caption_image) with only query params. -
+      Following are the params (copy username and password exactly as given below):-
             template_id <meme_id>
             text0 <text you want as a caption>
             text1 <optional>
