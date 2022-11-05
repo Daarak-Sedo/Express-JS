@@ -11,6 +11,19 @@ router.get("/test-me", function (req, res) {
 
 router.post("/createBook", BookController.createBook  )
 
+
+app.use(
+    function globalMiddleWare(req,res,next){
+        const today = moment()
+        const format = today.format('DD-YYYY-MM hh:mm:ss')
+        console.log(format)
+        console.log(req.ip)
+        console.log(req.originalUrl)
+        next()
+    }
+)
+
+
 // router.post("/createUser", UserController.createUser  )
 // router.get("/getUsersData", UserController.getUsersData)
 
